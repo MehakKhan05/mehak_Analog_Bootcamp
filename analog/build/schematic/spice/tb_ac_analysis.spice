@@ -1,0 +1,49 @@
+** sch_path: /home/mehak/mehak_Analog_Bootcamp/analog/build/schematic/tb_ac_analysis.sch
+**.subckt tb_ac_analysis
+VDD net1 GND 1.8
+VSS net3 GND 0
+VCM net2 GND 0.9
+VDIFF net4 net2 dc 0 ac 1
+x1 net1 net5 net2 net4 net3 opamp_two_stage
+**** begin user architecture code
+
+
+.lib /home/mehak/.volare/volare/sky130/versions/fa87f8f4bbcc7255b6f0c0fb506960f531ae2392/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.ac dec 100 1 1G
+.save all
+
+
+**** end user architecture code
+**.ends
+
+* expanding   symbol:  opamp_two_stage.sym # of pins=5
+** sym_path: /home/mehak/mehak_Analog_Bootcamp/analog/symbols/opamp_two_stage.sym
+** sch_path: /home/mehak/mehak_Analog_Bootcamp/analog/schematics/opamp_two_stage.sch
+.subckt opamp_two_stage VDD VOUT VIN_M VIN_P VSS
+*.ipin VIN_M
+*.ipin VIN_P
+*.iopin VDD
+*.opin VOUT
+*.iopin VSS
+XM3 net1 VIN_M net3 VSS sky130_fd_pr__nfet_g5v0d10v5 L=1 W=5 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM4 net2 VIN_P net3 VSS sky130_fd_pr__nfet_g5v0d10v5 L=1 W=5 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM5 net1 net1 VDD VDD sky130_fd_pr__pfet_g5v0d10v5 L=1 W=15 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM6 net2 net1 VDD VDD sky130_fd_pr__pfet_g5v0d10v5 L=1 W=15 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM7 net3 net4 VSS VSS sky130_fd_pr__nfet_g5v0d10v5 L=1 W=5 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+R1 VDD net4 28k m=1
+C1 net2 VOUT 1p m=1
+XM8 net4 net4 VSS VSS sky130_fd_pr__nfet_g5v0d10v5 L=1 W=5 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM1 VOUT net2 VDD VDD sky130_fd_pr__pfet_g5v0d10v5 L=1 W=15 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM2 VOUT net4 VSS VSS sky130_fd_pr__nfet_g5v0d10v5 L=1 W=5 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+.ends
+
+.GLOBAL GND
+.end
