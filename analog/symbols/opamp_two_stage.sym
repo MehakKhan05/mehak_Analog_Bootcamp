@@ -1,0 +1,31 @@
+v {xschem version=3.4.7 file_version=1.2}
+G {}
+K {type=subcircuit
+format="@name @pinlist @symname"
+pinlist="VDD VOUT VIN_M VIN_P VSS"
+template="name=x1"
+schematic=opamp_two_stage.sch
+}
+V {}
+S {}
+E {}
+L 4 60 0 80 0 {}
+L 4 -150 -40 -130 -40 {}
+L 4 -150 40 -130 40 {}
+L 4 -130 -100 -130 100 {}
+L 4 -130 -100 60 -0 {}
+L 4 -130 100 60 0 {}
+L 7 -50 -70 -50 -50 {}
+L 7 -50 50 -50 70 {}
+B 5 -52.5 -72.5 -47.5 -67.5 {name=VDD dir=inout order=1 dir=inout}
+B 5 77.5 -2.5 82.5 2.5 {name=VOUT dir=out order=2 dir=out}
+B 5 -152.5 -42.5 -147.5 -37.5 {name=VIN_M dir=in order=3 dir=in}
+B 5 -152.5 37.5 -147.5 42.5 {name=VIN_P dir=in order=4 dir=in}
+B 5 -52.5 67.5 -47.5 72.5 {name=VSS dir=inout order=5 dir=inout}
+T {opamp} -75.5 -16 0 0 0.3 0.3 {}
+T {Mehak K.} 25 -42 0 0 0.2 0.2 {}
+T {VDD} -45 -44 0 1 0.2 0.2 {}
+T {VOUT} 45 -4 0 1 0.2 0.2 {}
+T {VIN_M} -125 -44 0 0 0.2 0.2 {}
+T {VIN_P} -125 36 0 0 0.2 0.2 {}
+T {VSS} -45 36 0 1 0.2 0.2 {}
